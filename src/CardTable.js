@@ -6,8 +6,9 @@ import './CardTable.css';
 class CardTable extends Component{
     constructor(props){
         super(props);
-        this.state = {deckId: "", cards: []};
+        this.state = {deckId: "", cards: [], idSubmitted: false};
         this.drawCard = this.drawCard.bind(this);
+        this.handleChange = this.handleChange.bind(this);
     }
     async drawCard(){
         let cards = [...this.state.cards];
@@ -18,11 +19,16 @@ class CardTable extends Component{
         console.log(data);
         this.setState({cards});
     }
+    handleChange(evt){
+        evt.preventDefault();
+        console.log([evt.target.value])
+        this.setState({[evt.target.name]: evt.target.value});
+    }
     render(){
         let pileHasCards = this.state.cards.length > 0;
         let cards = pileHasCards ? this.state.cards.map(c => <Card cardCode={c.cardCode} name={c.name} key={c.id} id={c.id} />) : "";
-        return (
-            <div className="CardTable">
+        let game = 
+            <div className="CardTable-game">
                 <div className="CardTable-cards">
                     {cards}
                 </div>
@@ -31,11 +37,22 @@ class CardTable extends Component{
                     {/* {this.state.cards.length < 52 ? <button onClick={this.drawCard}>Draw a Card</button> : <p>No More Cards Remaining</p>} */}
                 </div>
             </div>
+        
+        let newGameForm = 
+            <form>
+                <input
+                    type="text"
+                    name="deckId"
+                    value={this.state.deckId}
+                    onChange={this.handleChange}
+                    placeholder="DeckId"
+                />
+            </form>
+        return (
+            <div className="CardTable">
+                {this.state.idSubmitted ? game : newGameForm}
+            </div>
         );
-    }
-    componentDidMount(){
-        let deckId;
-        Axios.get('https://deckofcardsapi.com/api/deck/new/shuffle/').then(result => this.setState({deckId: result.data.deck_id}))
     }
 }
 
