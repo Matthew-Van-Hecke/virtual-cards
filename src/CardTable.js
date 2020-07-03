@@ -47,6 +47,7 @@ class CardTable extends Component{
                     onChange={this.handleChange}
                     placeholder="DeckId"
                 />
+                <button onClick={() => this.setState({idSubmitted: true})}>Submit Code</button>
             </form>
         return (
             <div className="CardTable">
