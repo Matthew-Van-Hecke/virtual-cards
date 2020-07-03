@@ -1,3 +1,9 @@
 .CardTable{
     position: relative;
 }
+.CardTable-button, .CardTable-deckId{
+    display: inline;
+}
+.CardTable-deckId{
+    padding-left: 10px;
+}

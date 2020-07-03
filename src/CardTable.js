@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
 import Card from './Card';
+import PlayedCards from './PlayedCards';
 import './CardTable.css';
 
 class CardTable extends Component{
@@ -36,6 +37,8 @@ class CardTable extends Component{
                     {this.state.cards.length < 52 && <button onClick={this.drawCard}>Draw a Card</button>}
                     {/* {this.state.cards.length < 52 ? <button onClick={this.drawCard}>Draw a Card</button> : <p>No More Cards Remaining</p>} */}
                 </div>
+                <p className="CardTable-deckId">Deck ID: {this.state.deckId}</p>
+                <PlayedCards />
             </div>
         
         let newGameForm = 
