@@ -1,9 +1,0 @@
-.Card{
-    position: absolute;
-    top: 50px;
-    transition: all .3s;
-}
-
-.Card:hover{
-    transform: translateY(-50px) translateZ(50px);
-}
